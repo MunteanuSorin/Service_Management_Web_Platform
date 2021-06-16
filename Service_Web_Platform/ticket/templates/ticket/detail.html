@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+</style>
+    <title>Ticket details</title>
+</head>
+<body>
+<h1>Ticket number {{ ticket.ticket_number }} - {{ ticket.client_name }}</h1>
+
+
+    <li>Phone number: {{ ticket.client_phone }}</li>
+    <li>E-mail: {{ ticket.client_email }}</li>
+    <li>Vehicle type: {{ ticket.vehicle_type }}</li>
+    <li>Vehicle ID(VIN): {{ ticket.vehicle_ID }}</li>
+    <li>Licence number: {{ ticket.vehicle_licence_number }}</li>
+    <li>Vehicle Issue: {{ ticket.vehicle_issue_text }}</li>
+    <li>Ticket status: {{ ticket.ticket_status }}</li>
+    <li>Ticket entry date: {{ ticket.ticket_entry_date }}</li>
+    <li>Ticket sollution date: {{ ticket.ticket_solution_date }}</li>
+    <li>Ticket sollution text:{{ ticket.ticket_solution_text }}</li>
+    <li>Ticket number:{{ ticket.ticket_number }}</li>
+    <li>Ticket assignee: {{ ticket.ticket_assignee }}</li>
+
+<a href='editticket/'>
+<button class="button button4">Edit ticket</button>
+</a>
+
+
+</body>
+</html>

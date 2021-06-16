@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--css crap for buttons-->
+<style>
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+</style>
+    <title>Ticket List</title>
+</head>
+<body>
+
+<!--create a list with all the tickets-->
+{% if latest_ticket_list %}
+    <ul>
+    {% for ticket in latest_ticket_list %}
+        <li><a href="{% url 'ticket:detail' ticket.ticket_number %}">{{ ticket.client_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tickets are available.</p>
+{% endif %}
+
+<!--button for adding a new ticket-->
+<a href='newticket/'>
+<button class="button button4">Add new ticket</button>
+</a>
+
+
+
+</body>
+</html>
