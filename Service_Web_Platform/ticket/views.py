@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
@@ -10,10 +11,13 @@ from .forms import TicketForm
 
 def index(request):
     latest_ticket_list = Ticket.objects.order_by('-ticket_number')
+    paginator = Paginator(latest_ticket_list, 2)
     context = {
         'latest_ticket_list': latest_ticket_list,
     }
-    return render(request, 'ticket/index.html', context)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'ticket/index.html', {'page_obj': page_obj})
 
 
 def detail(request, ticket_number):

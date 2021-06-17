@@ -33,22 +33,61 @@
 
 {% include 'loginlogout.html' %}
 
-{% if latest_ticket_list %}
-    <ul>
-    {% for ticket in latest_ticket_list %}
-        <li><a href="{% url 'ticket:detail' ticket.ticket_number %}">{{ ticket.client_name }}</a></li>
-    {% endfor %}
-    </ul>
+{% if page_obj %}
+<div style="overflow-x:auto;">
+    <table border = "1" cellpadding = "5", cellspacing = "5">
+        <thead>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Entry Date</th>
+                <th>Ticket Status</th>
+                <th>Client Name</th>
+                <th>Vehicle Type</th>
+                <th>Issue Description</th>
+                <th>Ticket Assignee</th>
+                <th>Ticket Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in page_obj %}
+            <tr>
+                <td><a href="/ticket/{{ticket.ticket_number}}">{{ticket.ticket_number}}</a></td>
+                <td>{{ticket.ticket_entry_date}}</td>
+                <td>{{ticket.ticket_status}}</td>
+                <td>{{ticket.client_name}}</td>
+                <td>{{ticket.vehicle_type}}</td>
+                <td>{{ticket.vehicle_issue_text}}</td>
+                <td>{{ticket.ticket_assignee}}</td>
+                <td>{{ticket.ticket_solution_text}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% else %}
     <p>No tickets are available.</p>
 {% endif %}
 
 <!--button for adding a new ticket-->
 <a href='newticket/'>
-<button class="button button4">Add new ticket</button>
+    <button class="button button4">Add new ticket</button>
 </a>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
 
-
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 </body>
 </html>

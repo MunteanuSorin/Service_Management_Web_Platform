@@ -24,27 +24,86 @@
 </style>
     <title>Ticket details</title>
 </head>
+
 <body>
-<h1>Ticket number {{ ticket.ticket_number }} - {{ ticket.client_name }}</h1>
-
-
-    <li>Phone number: {{ ticket.client_phone }}</li>
-    <li>E-mail: {{ ticket.client_email }}</li>
-    <li>Vehicle type: {{ ticket.vehicle_type }}</li>
-    <li>Vehicle ID(VIN): {{ ticket.vehicle_ID }}</li>
-    <li>Licence number: {{ ticket.vehicle_licence_number }}</li>
-    <li>Vehicle Issue: {{ ticket.vehicle_issue_text }}</li>
-    <li>Ticket status: {{ ticket.ticket_status }}</li>
-    <li>Ticket entry date: {{ ticket.ticket_entry_date }}</li>
-    <li>Ticket sollution date: {{ ticket.ticket_solution_date }}</li>
-    <li>Ticket sollution text:{{ ticket.ticket_solution_text }}</li>
-    <li>Ticket number:{{ ticket.ticket_number }}</li>
-    <li>Ticket assignee: {{ ticket.ticket_assignee }}</li>
-
-<a href='editticket/'>
-<button class="button button4">Edit ticket</button>
-</a>
-
-
-</body>
+    <h1>Ticket number {{ ticket.ticket_number }} - {{ ticket.client_name }}</h1>
+    <table border = "1" cellpadding = "5", cellspacing = "5">
+        <thead>
+            <tr>
+                <th colspan = "2">Client Details</th>
+            </tr>
+        </thead>
+            <tr>
+                <td>Client Name</td>
+                <td>{{ticket.client_name}}</td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td>{{ ticket.client_phone }}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>{{ ticket.client_email }}</td>
+            </tr>
+        <thead>
+            <tr>
+                <th colspan = "2">Vehicle details</th>
+            </tr>
+        </thead>
+            <tr>
+                <td>Vehicle type</td>
+                <td>{{ticket.vehicle_type}}</td>
+            </tr>
+            <tr>
+                <td>Vehicle ID(VIN)</a></td>
+                <td>{{ ticket.vehicle_ID }}</td>
+            </tr>
+            <tr>
+                <td>Licence number</td>
+                <td>{{ticket.vehicle_licence_number}}</td>
+            </tr>
+            <tr>
+                <td>Vehicle Issue</td>
+                <td>{{ticket.vehicle_issue_text}}</td>
+            </tr>
+    </table>
+    <table border = "1" cellpadding = "5", cellspacing = "5">
+             <thead>
+                <tr>
+                    <th colspan = "2">Ticket details</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td>Ticket Status</td>
+                    <td>{{ticket.ticket_status}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket entry date</td>
+                    <td>{{ticket.ticket_entry_date}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket solution date</td>
+                    <td>{{ticket.ticket_solution_date}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket solution date</td>
+                    <td>{{ticket.ticket_solution_date}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket solution text</td>
+                    <td>{{ticket.ticket_solution_text}}</td>
+                </tr>
+                        <tr>
+                    <td>Ticket number</td>
+                    <td>{{ticket.ticket_number}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket assignee</td>
+                    <td>{{ticket.ticket_assignee}}</td>
+                </tr>
+        </table>
+            <a href='editticket/'>
+                <button class="button button4">Edit ticket</button>
+            </a>
+    </body>
 </html>
