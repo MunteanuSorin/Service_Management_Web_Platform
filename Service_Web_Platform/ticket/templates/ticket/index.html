@@ -28,7 +28,11 @@
 </head>
 <body>
 
+
 <!--create a list with all the tickets-->
+
+{% include 'loginlogout.html' %}
+
 {% if latest_ticket_list %}
     <ul>
     {% for ticket in latest_ticket_list %}

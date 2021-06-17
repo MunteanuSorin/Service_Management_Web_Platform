@@ -30,3 +30,6 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.client_name
+
+    def __iter__(self):
+        return self

@@ -8,3 +8,11 @@
 <h1>TODO add form for new ticket</h1>
 </body>
 </html>
+
+{% include 'loginlogout.html' %}
+
+<form action={{ticket_number}} method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
