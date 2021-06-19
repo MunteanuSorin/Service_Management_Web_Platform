@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
 from .models import Ticket
-from .forms import TicketForm
+from .forms import TicketForm, Edit_Ticket_Form
 
 # Create your views here.
 
@@ -34,6 +34,30 @@ def newticket(request):
 
 
 def editticket(request, ticket_number):
+    context = {}
     ticket = get_object_or_404(Ticket, pk=ticket_number)
-    return render(request, 'ticket/editticket.html')
+    curent_data = {
+        "client_name": ticket.client_name,
+        "client_phone": ticket.client_phone,
+        "client_email": ticket.client_email,
+        "vehicle_type": ticket.vehicle_type,
+        "vehicle_ID": ticket.vehicle_ID,
+        "vehicle_licence_number": ticket.vehicle_licence_number,
+        "vehicle_issue_text": ticket.vehicle_issue_text or 'TBD',
+        "ticket_status": ticket.ticket_status,
+        "ticket_solution_date": ticket.ticket_solution_date,
+        "ticket_solution_text": ticket.ticket_solution_text or 'TBD',
+        "ticket_assignee": ticket.ticket_assignee
+
+    }
+
+    form = Edit_Ticket_Form(request.POST or None, initial=curent_data)
+    context['form']=form
+    return render(request,  'ticket/editticket.html', context)
+
+#    if request.method == 'POST':
+#        form = Edit_Ticket_Form(request.POST or None, initial=curent_data)
+#    else:
+#        form = Edit_Ticket_Form()
+#    return render(request, 'ticket/detail.html', context)
 

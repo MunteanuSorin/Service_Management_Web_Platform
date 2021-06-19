@@ -5,9 +5,18 @@
     <title>Edit Ticket</title>
 </head>
 <body>
-<h1>TODO add form to edit the ticket</h1>
 
+<center>
+<h1>Edit & Update ticket </h1>
+</center>
 {% include 'loginlogout.html' %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+
 
 </body>
 </html>
