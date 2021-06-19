@@ -33,6 +33,7 @@ def newticket(request):
     return render(request, 'ticket/newticket.html', {'form': form})
 
 
-def editticket(request):
-    return render(request, '<int:ticket_number>/editticket.html')
+def editticket(request, ticket_number):
+    ticket = get_object_or_404(Ticket, pk=ticket_number)
+    return render(request, 'ticket/editticket.html')
 
