@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ticket Search</title>
+</head>
+<body>
+
+<!--search items and Search Button-->
+{% block content %}
+    <form method="get">
+        {{ filter.form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}
+
+<!--used for a blank line between Search Button and search results-->
+<br>
+
+<!--create a list with all the tickets-->
+<div style="overflow-x:auto;">
+    <table border = "1" cellpadding = "5", cellspacing = "5">
+        <thead>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Entry Date</th>
+                <th>Ticket Status</th>
+                <th>Client Name</th>
+                <th>Vehicle Type</th>
+                <th>Issue Description</th>
+                <th>Ticket Assignee</th>
+                <th>Ticket Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in filter.qs %}
+            <tr>
+                <td><a href="/ticket/{{ticket.ticket_number}}">{{ticket.ticket_number}}</a></td>
+                <td>{{ticket.ticket_entry_date}}</td>
+                <td>{{ticket.ticket_status}}</td>
+                <td>{{ticket.client_name}}</td>
+                <td>{{ticket.vehicle_type}}</td>
+                <td>{{ticket.vehicle_issue_text}}</td>
+                <td>{{ticket.ticket_assignee}}</td>
+                <td>{{ticket.ticket_solution_text}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

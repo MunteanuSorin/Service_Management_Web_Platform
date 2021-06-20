@@ -5,6 +5,7 @@ from django.template import loader
 from django.http import Http404
 from .models import Ticket
 from .forms import TicketForm, EditTicketForm
+from .filters import TicketFilter
 
 # Create your views here.
 
@@ -66,5 +67,11 @@ def editticket(request, ticket_number):
         return redirect('/ticket/')
     context['form']=form
     return render(request, 'ticket/editticket.html', context)
+
+
+def search(request):
+    ticket_list = Ticket.objects.all()
+    ticket_filter = TicketFilter(request.GET, queryset=ticket_list)
+    return render(request, 'ticket/searchticket.html', {'filter': ticket_filter})
 
 
