@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
@@ -11,7 +11,7 @@ from .forms import TicketForm, Edit_Ticket_Form
 
 def index(request):
     latest_ticket_list = Ticket.objects.order_by('-ticket_number')
-    paginator = Paginator(latest_ticket_list, 2)
+    paginator = Paginator(latest_ticket_list, 15)
     context = {
         'latest_ticket_list': latest_ticket_list,
     }
@@ -26,12 +26,21 @@ def detail(request, ticket_number):
 
 
 def newticket(request):
+    form = TicketForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/ticket/')
+
+    return render(request, 'ticket/newticket.html', {'form': form})
+
+'''
     if request.method == 'POST':
         form = TicketForm(request.POST)
     else:
         form = TicketForm()
     return render(request, 'ticket/newticket.html', {'form': form})
-
+'''
 
 def editticket(request, ticket_number):
     context = {}

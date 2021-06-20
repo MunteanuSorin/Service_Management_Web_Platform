@@ -5,13 +5,13 @@
     <title>New Ticket</title>
 </head>
 <body>
-<h1>TODO add form for new ticket</h1>
+<h1>Please fill in all the fields below:</h1>
 </body>
 </html>
 
 {% include 'loginlogout.html' %}
 
-<form action={{ticket_number}} method="post">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">
