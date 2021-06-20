@@ -22,8 +22,8 @@ class Ticket(models.Model):
 
     ticket_status = models.CharField(max_length=10, choices=ticket_statuses, default='New')
     #ticket_entry_date = models.DateTimeField('Entry Date')
-    ticket_entry_date = models.DateField(default=datetime.date.today())
-    ticket_solution_date = models.DateField(null=True, blank=True)
+    ticket_entry_date = models.DateTimeField(default=timezone.now)
+    ticket_solution_date = models.DateTimeField(null=True, blank=True)
     ticket_solution_text = models.TextField(null=True, blank=True)
     ticket_number = models.AutoField(primary_key=True)
     ticket_assignee = models.CharField(max_length=100)
