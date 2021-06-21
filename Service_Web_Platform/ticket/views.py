@@ -69,6 +69,13 @@ def editticket(request, ticket_number):
     return render(request, 'ticket/editticket.html', context)
 
 
+def deleteticket(request, ticket_number):
+    ticket = get_object_or_404(Ticket, pk=ticket_number)
+    # delete the ticket directly
+    Ticket.objects.filter(ticket_number=ticket_number).delete()
+    return render(request, 'ticket/deleteticket.html', {'ticket': ticket})
+
+
 def search(request):
     ticket_list = Ticket.objects.all()
     ticket_filter = TicketFilter(request.GET, queryset=ticket_list)
