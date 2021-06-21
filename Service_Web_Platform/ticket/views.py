@@ -75,3 +75,11 @@ def search(request):
     return render(request, 'ticket/searchticket.html', {'filter': ticket_filter})
 
 
+def new_client_ticket(request):
+    form = TicketForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/ticket/')
+
+    return render(request, 'ticket/clientticket.html', {'form': form})

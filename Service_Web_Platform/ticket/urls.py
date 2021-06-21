@@ -9,5 +9,6 @@ urlpatterns = [
     path('<int:ticket_number>/editticket/', views.editticket, name='editticket'),
     path('newticket/', views.newticket, name='newticket'),
     path('newticket/ticket/index', views.index, name='index'),
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
+    path('clientticket/', views.new_client_ticket, name='clientticket'),
 ]

@@ -6,7 +6,7 @@
 <!--css crap for buttons-->
 <style>
 .button {
-  background-color: #04AA6D; /* Green */
+  background-color: #0033cc; /* Blue */
   border: none;
   color: white;
   padding: 10px;
@@ -17,25 +17,165 @@
   margin: 2px 2px;
   cursor: pointer;
 }
-
 .button1 {border-radius: 2px;}
 .button2 {border-radius: 4px;}
 .button3 {border-radius: 8px;}
 .button4 {border-radius: 12px;}
 .button5 {border-radius: 50%;}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+*{
+ margin:0;
+ padding: 0;
+ outline: 0;
+}
+background: -moz-linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
+background: linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e94ca1",endColorstr="#c74ae9",GradientType=1);
+opacity: .7;
+}
+table{
+ position: absolute;
+ z-index: 2;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%,-50%);
+ width: 60%;
+ border-collapse: collapse;
+ border-spacing: 0;
+ box-shadow: 0 2px 15px rgba(64,64,64,.7);
+ border-radius: 12px 12px 0 0;
+ overflow: hidden;
+
+}
+td , th{
+ padding: 15px 20px;
+ text-align: center;
+
+
+}
+th{
+ background-color: #0033cc;
+ color: #fafafa;
+ font-family: 'Open Sans',Sans-serif;
+ font-weight: 200;
+ text-transform: uppercase;
+
+}
+tr{
+ width: 100%;
+ background-color: #fafafa;
+ font-family: 'Montserrat', sans-serif;
+}
+tr:nth-child(even){
+ background-color: #eeeeee;
+}
+         body {
+         margin:0;
+         font-family: 'Work Sans', sans-serif;
+         font-weight: 300;
+         }
+         .container {
+         width: 80%;
+         margin: 0 auto;
+         }
+         header {
+         background: #ffffff;
+         }
+         header :: after {
+         content: '';
+         display: table;
+         clear: 'both
+         }
+         .logo {
+         float: left;
+         padding: 0px;
+         }
+         nav {
+         float:right;
+         }
+         nav ul {
+            margin:0;
+            padding:0;
+            list-style:none;
+            }
+         nav li {display:inline-block;
+         margin-left: 70px;
+         padding-top:23px;
+         position:relative;
+         }
+         nav a {
+            color : #0033cc;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+
+         }
+         nav a:hover {
+            color: #0000ff;
+            font-weight: bold
+         }
+         nav a::before {
+            content:'';
+            display: block;
+            height: 5px;
+            background-color:#444;
+            position:absolute;
+            top:0;
+            width:0%;
+            transition:all ease-in-out 250ms;
+         }
+         nav a:hover::before {
+            width:100%;
+         }
+         * {box-sizing:border-box}
+         * {box-sizing:border-box}
+.welcome_user {
+            color : #0033cc;
+            text-decoration: none;
+            font-size: 14px;
+}
+
 </style>
     <title>Ticket List</title>
 </head>
 <body>
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+    <div>
+  <p class="welcome_user">Hi {{ user.username }}!</p>
+        </div>
+<div>
+            <img src="{% static 'ticket/images/logo.png' %}">
+            <nav>
+               <ul>
+                  <li><a href="../">Logout</a></li>
+               </ul>
+            </nav>
+         </div>
+{% else %}
+  <p style="color:white">You are not logged in</p>
 
-
-<!--create a list with all the tickets-->
-
-{% include 'loginlogout.html' %}
-
+         <div class ="container">
+            <img src="{% static 'ticket/images/logo.png' %}">
+            <nav>
+               <ul>
+                  <li><a href="#">Despre Noi</a></li>
+                  <li><a href="#">Programeaza-te</a></li>
+                  <li><a href="#">Contacteaza-ne</a></li>
+                  <li><a href="/accounts/login/">Login</a></li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+   <div>
+{% endif %}
+{% endblock %}
 {% if page_obj %}
 <div style="overflow-x:auto;">
-    <table border = "1" cellpadding = "5", cellspacing = "5">
+    <table class="content-table">
         <thead>
             <tr>
                 <th>Ticket Number</th>
